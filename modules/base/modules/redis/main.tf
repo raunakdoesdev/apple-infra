@@ -3,9 +3,12 @@ resource "aws_elasticache_subnet_group" "redis_subnet_group" {
   subnet_ids = var.subnet_ids
 }
 
-#
+resource "random_id" "redis_name" {
+  byte_length = 4
+}
+
 resource "aws_elasticache_serverless_cache" "reducto-elasticache" {
-  name   = "reducto-redis-serverless"
+  name   = "reducto-redis-${random_id.redis_name.hex}"
   engine = "redis"
   major_engine_version     = "7"
   security_group_ids       = [aws_security_group.redis_security_group.id]
