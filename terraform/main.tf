@@ -12,4 +12,16 @@ module "kubernetes" {
     source = "./modules/kubernetes"
     vpc_id = var.vpc_id
     subnet_ids = var.subnet_ids
+    policy_arn = module.base.policy_arn
+}
+
+
+module "helm" {
+    source = "./modules/helm"
+    eks_cluster_name = module.kubernetes.cluster_name
+}
+
+
+output "nginx_endpoint" {
+    value = module.helm.nginx_endpoint
 }

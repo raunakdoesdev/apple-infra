@@ -6,6 +6,6 @@ output "s3_bucket_name" {
     value = module.s3_bucket.bucket_name
 }
 
-output "role_arn" {
-    value = module.role.role_arn
+output "policy_arn" {
+    value = module.role.policy_arn
 }

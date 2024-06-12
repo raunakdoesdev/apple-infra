@@ -1,20 +1,3 @@
-resource "aws_iam_role" "reducto_container_role" {
-  name_prefix = "reducto-container-role"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Principal = {
-          Service = "ec2.amazonaws.com"
-        }
-        Action = "sts:AssumeRole"
-      }
-    ]
-  })
-}
-
 resource "aws_iam_policy" "reducto_container_policy" {
   name_prefix = "reducto-container-policy"
   description = "IAM policy to allow access to s3 and textract"
@@ -43,15 +26,11 @@ resource "aws_iam_policy" "reducto_container_policy" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "reducto_container_policy_attachment" {
-  role       = aws_iam_role.reducto_container_role.name
-  policy_arn = aws_iam_policy.reducto_container_policy.arn
-}
 
 variable "bucket_name" {
   type = string
 }
 
-output "role_arn" {
-  value = aws_iam_role.reducto_container_role.arn
+output "policy_arn" {
+  value = aws_iam_policy.reducto_container_policy.arn
 }
