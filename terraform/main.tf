@@ -12,7 +12,6 @@ module "kubernetes" {
     source = "./modules/kubernetes"
     vpc_id = var.vpc_id
     subnet_ids = var.subnet_ids
-    policy_arn = module.base.policy_arn
 }
 
 
