@@ -16,12 +16,6 @@ provider "kubernetes" {
   }
 }
 
-data "kubernetes_service" "nginx" {
-  depends_on = [helm_release.nginx]
-  metadata {
-    name = "nginx"
-  }
-}
 
 provider "helm" {
   kubernetes {
@@ -35,8 +29,30 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "nginx" {
-  name       = "reducto-chart"
+data "kubernetes_service" "reducto" {
+  depends_on = [helm_release.reducto]
+  metadata {
+    name = "reducto"
+  }
+}
+
+resource "helm_release" "reducto" {
+  name       = "reducto"
   chart      = "${path.module}/../../../reducto-chart"
+}
+
+
+
+data "kubernetes_service" "nginx" {
+  depends_on = [helm_release.nginx]
+  metadata {
+    name = "nginx"
+  }
+}
+
+resource "helm_release" "nginx" {
+  name       = "nginx"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart      = "nginx"
 }
 

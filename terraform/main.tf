@@ -21,6 +21,6 @@ module "helm" {
 }
 
 
-output "nginx_endpoint" {
-    value = module.helm.nginx_endpoint
+output "reducto_endpoint" {
+    value = module.helm.reducto_endpoint
 }
