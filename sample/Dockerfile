@@ -6,4 +6,4 @@ RUN pip install boto3 fastapi
 
 COPY app.py app.py
 
-CMD ["fastapi", "run", "app.py", "--port", "80"]
+CMD ["python", "-m", "fastapi", "run", "app.py", "--port", "80"]
