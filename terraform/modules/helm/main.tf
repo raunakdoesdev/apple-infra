@@ -32,7 +32,7 @@ provider "helm" {
 data "kubernetes_service" "reducto" {
   depends_on = [helm_release.reducto]
   metadata {
-    name = "reducto"
+    name = "reducto-reducto-chart"
   }
 }
 
