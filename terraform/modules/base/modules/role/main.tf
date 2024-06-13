@@ -2,6 +2,7 @@ resource "aws_iam_policy" "reducto_container_policy" {
   name_prefix = "reducto-container-policy"
   description = "IAM policy to allow access to s3 and textract"
 
+
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -21,6 +22,11 @@ resource "aws_iam_policy" "reducto_container_policy" {
           "textract:DetectDocumentText",
         ]
         Resource = "*"
+        Condition = {
+          StringEquals = {
+            "iam:PermissionsBoundary" = var.boundary_policy_arn
+          }
+        }
       }
     ]
   })
@@ -28,6 +34,10 @@ resource "aws_iam_policy" "reducto_container_policy" {
 
 
 variable "bucket_name" {
+  type = string
+}
+
+variable "boundary_policy_arn" {
   type = string
 }
 
