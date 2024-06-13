@@ -14,7 +14,12 @@ resource "aws_iam_policy" "reducto_container_policy" {
         Resource = [
           "arn:aws:s3:::${var.bucket_name}/*",
           "arn:aws:s3:::${var.bucket_name}"
-        ]
+        ],
+        Condition = {
+          StringEquals = {
+            "iam:PermissionsBoundary" = var.boundary_policy_arn
+          }
+        }
       },
       {
         Effect = "Allow"
