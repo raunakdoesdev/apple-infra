@@ -8,7 +8,7 @@ This Terraform module sets up basic AWS resources required for an application. H
 2. **Modules**:
    - **Redis Module**: Sets up a Redis instance using the provided VPC ID and subnet IDs.
    - **S3 Bucket Module**: Creates an S3 bucket.
-   - **Role Module**: Creates an IAM role with permissions to access the S3 bucket and use AWS Textract. The S3 bucket name is passed from the S3 bucket module to the role module.
+   - **Role Module**: Creates an IAM policy with permissions to access the S3 bucket and use AWS Textract. The S3 bucket name is passed from the S3 bucket module to the role module.
 
 3. **Variables**:
    - `vpc_id`: A string variable that holds the VPC ID, with a default value.
@@ -17,7 +17,7 @@ This Terraform module sets up basic AWS resources required for an application. H
 4. **Outputs**:
    - `redis_endpoint`: Outputs the Redis endpoint.
    - `s3_bucket_name`: Outputs the S3 bucket name.
-   - `role_arn`: Outputs the ARN of the IAM role.
+   - `policy_arn`: Outputs the ARN of the IAM policy.
 
 This module orchestrates the creation and management of AWS resources by leveraging modular and reusable code blocks, making it easier to manage infrastructure as code.
 
